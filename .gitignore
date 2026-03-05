@@ -10,6 +10,10 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+# --- MAVEN WRAPPER ---
+# Ignoramos el binario pesado (.jar) para no ensuciar el repositorio.
+# Git SÍ rastreará automáticamente los scripts (mvnw, mvnw.cmd) y el archivo maven-wrapper.properties
 .mvn/wrapper/maven-wrapper.jar
 
 # =========================
@@ -18,7 +22,7 @@ buildNumber.properties
 .quarkus/
 
 # =========================
-# IDEs (IntelliJ, Eclipse, VS Code)
+# Entornos de Desarrollo (IntelliJ, Eclipse, VS Code)
 # =========================
 .idea/
 *.iml
@@ -32,7 +36,7 @@ buildNumber.properties
 *.code-workspace
 
 # =========================
-# Logs y SO
+# Logs y Archivos del Sistema Operativo
 # =========================
 *.log
 .DS_Store
