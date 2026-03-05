@@ -48,6 +48,7 @@
                 <version>3.3.1</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
+                    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                 </configuration>
@@ -56,7 +57,9 @@
                         <id>validate-and-report</id>
                         <phase>validate</phase>
                         <goals>
-                            <goal>checkstyle</goal> <goal>check</goal>      </goals>
+                            <goal>checkstyle</goal>
+                            <goal>check</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -71,13 +74,16 @@
                     <failOnError>true</failOnError>
                     <xmlOutput>false</xmlOutput>
                     <htmlOutput>true</htmlOutput>
+                    <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
                 </configuration>
                 <executions>
                     <execution>
                         <id>verify-and-report</id>
                         <phase>verify</phase>
                         <goals>
-                            <goal>spotbugs</goal> <goal>check</goal>    </goals>
+                            <goal>spotbugs</goal>
+                            <goal>check</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -106,13 +112,24 @@
                         <ruleset>/category/java/design.xml</ruleset>
                     </rulesets>
                     <format>html</format>
+                    <excludes>
+                        <exclude>**/dto/**/*.java</exclude>
+                        <exclude>**/entity/**/*.java</exclude>
+                        <exclude>**/mapper/**/*.java</exclude>
+                        <exclude>**/generated-sources/**/*.java</exclude>
+                        <exclude>**/*DTO.java</exclude>
+                        <exclude>**/*Mapper.java</exclude>
+                        <exclude>**/*Entity.java</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
                         <id>pmd-verify-and-report</id>
                         <phase>verify</phase>
                         <goals>
-                            <goal>pmd</goal>   <goal>check</goal> </goals>
+                            <goal>pmd</goal>
+                            <goal>check</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -121,6 +138,17 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/dto/**</exclude>
+                        <exclude>**/entity/**</exclude>
+                        <exclude>**/mapper/**</exclude>
+                        <exclude>**/*DTO.*</exclude>
+                        <exclude>**/*Entity.*</exclude>
+                        <exclude>**/*Mapper.*</exclude>
+                        <exclude>**/*MapperImpl.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -130,7 +158,9 @@
                         <id>report-and-check</id>
                         <phase>verify</phase>
                         <goals>
-                            <goal>report</goal> <goal>check</goal>  </goals>
+                            <goal>report</goal>
+                            <goal>check</goal>
+                        </goals>
                         <configuration>
                             <formats>
                                 <format>HTML</format>

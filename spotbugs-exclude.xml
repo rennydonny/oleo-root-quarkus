@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <Package name="~.*\.(dto|entity|mapper).*"/>
+    </Match>
+
+    <Match>
+        <Class name="~.*(DTO|Dto|Entity|Mapper|MapperImpl)"/>
+    </Match>
+</FindBugsFilter>
